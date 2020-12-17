@@ -1,7 +1,7 @@
 #!/bin/bash
 export MSYS_NO_PATHCONV=1
 # Name of container to use for start the indy cli or bash
-export BASH_CONTAINER=${BASH_CONTAINER:= nodejs_alice_1}
+export BASH_CONTAINER=${BASH_CONTAINER:= nodejs_aby_1}
 # Services to start for "up" - normally blank to start all services
 export START_SERVICES=${START_SERVICES:=""}
 

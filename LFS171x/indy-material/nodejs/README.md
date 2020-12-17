@@ -8,7 +8,7 @@ To learn more about Hyperledger Indy, see the project wiki - https://wiki.hyperl
 
 This demo is used as an exercise for those taking the Hyperledger Project's EdX  [Blockchain for Business](https://www.edx.org/course/blockchain-business-introduction-linuxfoundationx-lfs171x-0) course.
 
-Once you have the demo started, this **[Agent Demo Script](AgentDemoScript.md)** guides you through the scenario of Alice using Hyperledger Indy to get her transcripts from Faber College and then using them to apply for a job with Acme Corp.
+Once you have the demo started, this **[Agent Demo Script](AgentDemoScript.md)** guides you through the scenario of aby using Hyperledger Indy to get her transcripts from Faber College and then using them to apply for a job with Acme Corp.
 
 [Click here](https://youtu.be/9WZxlrGMA3s) to view a short screencast of the demo.
 
@@ -93,7 +93,7 @@ As the demo starts up, a series of 4 digit numbers will appear above the termina
 
 To go through the demonstration, click the following numbers from the list:
 
-* **3000** for Alice
+* **3000** for aby
 * **3002** for Faber College
 * **3003** for Acme Corporation
 
@@ -105,7 +105,7 @@ You can also open in a browser a Blockchain Ledger Explorer:
 * **9000**
 
 Although we don't talk about them in the demo overview, there are two additional Agents running that you can access:
-* **3001** for Bob
+* **3001** for Gaius
 * **3004** for Thrift Bank
 
 > The remainder of the numbers (ports - 9701-9708) are the ports to the Blockchain Ledger nodes - two per node.
@@ -113,7 +113,7 @@ Although we don't talk about them in the demo overview, there are two additional
 ## Local Machine
 
 To go through the demonstration, open the following links in new browser tabs:
-* [http://localhost:3000](http://localhost:3000) for Alice
+* [http://localhost:3000](http://localhost:3000) for aby
 * [http://localhost:3002](http://localhost:3002) for Faber College
 * [http://localhost:3003](http://localhost:3003) for Acme Corporation
 
@@ -125,7 +125,7 @@ You can also open in a browser a Ledger Explorer:
 * [http://localhost:9000](http://localhost:9000)
 
 Although we don't talk about them in the demo overview, there are two additional Agents running that you can access:
-* [http://localhost:3001](http://localhost:3001) for Bob
+* [http://localhost:3001](http://localhost:3001) for Gaius
 * [http://localhost:3004](http://localhost:3004) for Thrift Bank
 
 ## Stopping the Demo

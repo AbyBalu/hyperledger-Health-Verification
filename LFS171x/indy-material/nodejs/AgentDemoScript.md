@@ -98,11 +98,11 @@ Indy uses the term _Agent_ to mean the software that interacts with other identi
 To demonstrate how Indy works, we have created a short demo involving the following agents:
 
 
-*   **Alice**, who went to Faber College and wants to apply for a job at Acme
-*   **Faber College**, which granted Alice's degree
-*   **Acme**, who needs an official copy of Alice's transcript 
+*   **Aby**, who went to Faber College and wants to apply for a job at Acme
+*   **Faber College**, which granted Aby's degree
+*   **Acme**, who needs an official copy of Aby's transcript 
 
-Start the demo as per the start instructions in [README.md](README.md). Notice that you should have three browser tabs open - Alice, Faber and ACME. These are the Agents, each running in a Docker container and accessed on separate localhost ports: Alice (localhost:3000), Faber College (localhost:3002) and Acme Corporation (localhost:3003). Although you are accessing them all on the same machine, imagine that they are all running independently, in different places.
+Start the demo as per the start instructions in [README.md](README.md). Notice that you should have three browser tabs open - Aby, Faber and ACME. These are the Agents, each running in a Docker container and accessed on separate localhost ports: Aby (localhost:3000), Faber College (localhost:3002) and Acme Corporation (localhost:3003). Although you are accessing them all on the same machine, imagine that they are all running independently, in different places.
 
 > If you are running this demo using the "In Browser" instructions, the URL for the different Agents will be similar to this: `http://ip172-18-0-14-bf52ab6ac3u00082oj2g-3001.direct.labs.play-with-docker.com/#credentials`, where the "3001" before the word ".direct" is the exposed port number that you clicked on.
 
@@ -115,7 +115,7 @@ Start the demo as per the start instructions in [README.md](README.md). Notice t
 Apart from the colours and name in the top right, each Agent looks the same. There is a menu across the top, as shown in the screenshot below.  If you click across each menu item you will see:
 
 *   Each has no relationships or messages
-*   Each has one credential - from the Government - that has the official "Name" of the Identity (Alice, Faber, etc.)
+*   Each has one credential - from the Government - that has the official "Name" of the Identity (Aby, Faber, etc.)
 *   Each has some things under Proof Requests and Issuing. We'll get into those later.
 
 |![AgentScreen](images/AgentScreen.png "Agent Home Screen from Demo")|
@@ -125,7 +125,7 @@ Apart from the colours and name in the top right, each Agent looks the same. The
 
 You will also see that at the bottom of the screen each user has a DID. Each generated their DID and published it to the instance of Hyperledger Indy ledger we started. Knowing a DID, another Agent can look up on that ledger and get back the public key and endpoint associated with that DID.  We'll use those DIDs later to connect the Agents so that they can exchange messages.
 
-> **NOTE:** From time to time in running the demo you must refresh the Browser (Crl-R or Cmd-R) to update the screen data. This is needed when an action by one Identity (e.g. Alice) affects the data of another (e.g. Faber).
+> **NOTE:** From time to time in running the demo you must refresh the Browser (Crl-R or Cmd-R) to update the screen data. This is needed when an action by one Identity (e.g. Aby) affects the data of another (e.g. Faber).
 
 ### Step 2: Setting up Faber
 
@@ -136,7 +136,7 @@ Before we get started, Faber has to do some one time setup that we'll do first. 
 *   First, we'll post to the Hyperledger Indy Ledger a transcript _Schema_. This is a public definition of what fields (claims) are in Transcript Credentials that Faber will issue to its graduates. Since it is public, the Schema could be published by anyone (such as the "Association of Colleges and Universities") and can be used by anyone (such as other institutions like "Port Chester University").
 *   Second, we'll post to the Hyperledger Indy Ledger a "Credential Definition," an Indy component that links a particular Credential Issuer (Faber in this case), with a Schema (the Transcript Schema), an optional Revocation Registry (we're not going to use that) and a series of Keys used for encryption and signing of the Claims in the Credentials.
 
-Together, that public data is what allows Faber to issue a Transcript Credential to Alice that she can later prove to Acme.
+Together, that public data is what allows Faber to issue a Transcript Credential to Aby that she can later prove to Acme.
 
 Back to our story.  Faber has just set up a Hyperledger Indy Agent that can issue credentials. John Academic, Faber's most awesome transcript keeper, needs to get things working. He will have to write a Schema and Credential Definition to the Indy Ledger to do this. It is a bit complicated but nothing John Academic can't handle!
 
@@ -169,33 +169,33 @@ OK - we've done the setup work. On with the story.
 
 ### Step 3: Establishing Relationships
 
-In order for Alice to get her transcripts from her alma mater, Faber College, Alice needs to establish a digital relationship with Faber. Alice does this by sending a connection request using the Endpoint DID for Faber. In this demo, each agent's unique DID is shown at the bottom of the agent's window.
+In order for Aby to get her transcripts from her alma mater, Faber College, Aby needs to establish a digital relationship with Faber. Aby does this by sending a connection request using the Endpoint DID for Faber. In this demo, each agent's unique DID is shown at the bottom of the agent's window.
 
-> **Note: _The user interface for doing this in real agents will be MUCH better. For example, Alice might have been logged into Faber's website, been offered her transcripts and clicked a link to trigger establishing a connection. Or, she might have seen a QR code published by Faber and used the camera on her phone to start the connection. Maybe you will think of a better way for this to occur._**
+> **Note: _The user interface for doing this in real agents will be MUCH better. For example, Aby might have been logged into Faber's website, been offered her transcripts and clicked a link to trigger establishing a connection. Or, she might have seen a QR code published by Faber and used the camera on her phone to start the connection. Maybe you will think of a better way for this to occur._**
 
 To create a new relationship:
 
 
 
-1.  In the Alice Agent tab, click **Send Connection Request**. 
+1.  In the Aby Agent tab, click **Send Connection Request**. 
 
   |![CreateRelBlank](images/CreateRelBlank.png "Blank Create Relationship Popup")|
   |:--:|
   |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-2.  In the Faber Agent tab, highlight and copy Faber's Endpoint DID (bottom of the screen), and then go back to the Alice Agent tab and paste it into the "Send Connection Request" popup (above) and click **Send Connection Request**.
+2.  In the Faber Agent tab, highlight and copy Faber's Endpoint DID (bottom of the screen), and then go back to the Aby Agent tab and paste it into the "Send Connection Request" popup (above) and click **Send Connection Request**.
 
   |![CreateRelFill](images/CreateRelFill.png "Filled Create Relationship Popup")|
   |:--:|
   |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-  This creates a relationship between Alice and Faber - whoohoo!  If you click the "Relationships" menu item on the two Agents you will see the relationship - if not, refresh the tab (Ctrl-R) and it will be there. You will also see that the DID is still visible.  That's not very friendly.  In the real agent world, we don't ever want to see DIDs! We could have the user type in a name for each relationship, but wouldn't it be easier if the other party just told us their name?
+  This creates a relationship between Aby and Faber - whoohoo!  If you click the "Relationships" menu item on the two Agents you will see the relationship - if not, refresh the tab (Ctrl-R) and it will be there. You will also see that the DID is still visible.  That's not very friendly.  In the real agent world, we don't ever want to see DIDs! We could have the user type in a name for each relationship, but wouldn't it be easier if the other party just told us their name?
 
-  But wait. There's a problem with that. What if they lied to us?  Told us they were Alice, when really they were her malicious enemy, Mallory? What we want is a trusted way to get the name of the other party. This is where Verifiable Credentials come in.
+  But wait. There's a problem with that. What if they lied to us?  Told us they were Aby, when really they were her malicious enemy, Mallory? What we want is a trusted way to get the name of the other party. This is where Verifiable Credentials come in.
 
-  As soon as the connection is established, both Alice and Faber automatically send each other a Proof Request that asks for the name of the other party using the "Government ID" credential both are already holding. Since that Credential is owned by its Holder, the Agent software prompts the user to confirm they want to share the requested information.
+  As soon as the connection is established, both Aby and Faber automatically send each other a Proof Request that asks for the name of the other party using the "Government ID" credential both are already holding. Since that Credential is owned by its Holder, the Agent software prompts the user to confirm they want to share the requested information.
 
-  Alice checks her messages (click refresh) and sees that she has a Proof Request from Faber requesting her name. 
+  Aby checks her messages (click refresh) and sees that she has a Proof Request from Faber requesting her name. 
 
   |![NamePRNotes](images/NamePRNotes.png "Accept Proof Request Popup")|
   |:--:|
@@ -203,27 +203,27 @@ To create a new relationship:
 
 3.  Click the **Messages** tab then click **Accept**.
 
-Meanwhile, at Faber College, they too have received a message for a "Name" Proof Request (click refresh), this one from Alice, which they too accept, and resulting in Alice getting the College's official name "Faber" - per the Government ID. You'll need to refresh the browser tabs to see the latest data.
+Meanwhile, at Faber College, they too have received a message for a "Name" Proof Request (click refresh), this one from Aby, which they too accept, and resulting in Aby getting the College's official name "Faber" - per the Government ID. You'll need to refresh the browser tabs to see the latest data.
 
 
 ### Step 4: It's All About Your Credentials
 
-Alice will need her transcript to apply for the job at Acme. Since Alice and Faber now have a relationship, she can go ahead and ask for her transcripts. We don't show how that happens in this demo, but let's pretend she has done that.
+Aby will need her transcript to apply for the job at Acme. Since Aby and Faber now have a relationship, she can go ahead and ask for her transcripts. We don't show how that happens in this demo, but let's pretend she has done that.
 
 
-> **Note: _In the Indy "Credential Issuance" protocol, there are messages for Offer (Issuer to Holder), Request (Holder to Issuer) and Issue (Issuer to Holder). The latter two must be done to enable the creation of a Verifiable Credential. While Alice could have triggered the process (and it would have made more sense!), it was easier to build this demo by having Faber start the process with the Offer step._**
+> **Note: _In the Indy "Credential Issuance" protocol, there are messages for Offer (Issuer to Holder), Request (Holder to Issuer) and Issue (Issuer to Holder). The latter two must be done to enable the creation of a Verifiable Credential. While Aby could have triggered the process (and it would have made more sense!), it was easier to build this demo by having Faber start the process with the Offer step._**
 
-Faber, knowing Alice wants her transcript, starts the process. It's time for John Academic to get back to work. Go to the Faber browser tab and click on the **Issuing** menu item.
+Faber, knowing Aby wants her transcript, starts the process. It's time for John Academic to get back to work. Go to the Faber browser tab and click on the **Issuing** menu item.
 
 
 
-1.  In the Send Credential Offer window, select a **Relationship** (Alice) then a **Credential Definition** (MyTranscript) and click **Submit**.
+1.  In the Send Credential Offer window, select a **Relationship** (Aby) then a **Credential Definition** (MyTranscript) and click **Submit**.
 
-  |![SendCredOffer](images/CredOffer.png "Faber sends Cred Offer to Alice")|
+  |![SendCredOffer](images/CredOffer.png "Faber sends Cred Offer to Aby")|
   |:--:|
   |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-  Going back to the Alice browser tab (refresh the browser tab), Alice sees that in her **Messages**, she has a new Credential Offer: her transcript from Faber (straight A's btw), which she accepts. 
+  Going back to the Aby browser tab (refresh the browser tab), Aby sees that in her **Messages**, she has a new Credential Offer: her transcript from Faber (straight A's btw), which she accepts. 
 
   |![CredOfferTran](images/CredOfferTran.png "Accept Credential Offer Popup")|
   |:--:|
@@ -233,20 +233,20 @@ Faber, knowing Alice wants her transcript, starts the process. It's time for Joh
 
 2.  Click **Credentials**.
 
-|![Creds](images/Creds.png "Alice list of Creds")|
+|![Creds](images/Creds.png "Aby list of Creds")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-Alice now has two credentials: her government ID and her transcript. If you click on the Transcript credential you'll see just how awesome her GPA is!
+Aby now has two credentials: her government ID and her transcript. If you click on the Transcript credential you'll see just how awesome her GPA is!
 
-|![AliceTranscriptCred](images/AliceTranscriptCred.png "Alice Transcript Credential from Faber")|
+|![AbyTranscriptCred](images/AbyTranscriptCred.png "Aby Transcript Credential from Faber")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
 
 ### Step 5: Applying for the Job
 
-Alice has gotten her transcript from Faber. Now all she has to do is land the job! She has interviewed successfully (or so she thinks) and it all comes down to her transcript. No pressure. Just as she did with Faber, Alice must first establish a relationship with Acme.
+Aby has gotten her transcript from Faber. Now all she has to do is land the job! She has interviewed successfully (or so she thinks) and it all comes down to her transcript. No pressure. Just as she did with Faber, Aby must first establish a relationship with Acme.
 
 
 1.  Click **Send Connection Request**. 
@@ -261,9 +261,9 @@ Alice has gotten her transcript from Faber. Now all she has to do is land the jo
   |:--:|
   |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-  Connection established! As with the Alice-Faber connection, immediately after the connection is established, they both send a Proof Request to the other to get information from the government credential they each hold.
+  Connection established! As with the Aby-Faber connection, immediately after the connection is established, they both send a Proof Request to the other to get information from the government credential they each hold.
 
-  Alice checks her messages (refresh browser tab) and sees that she has a Proof Request from Acme for the "Name" attribute. 
+  Aby checks her messages (refresh browser tab) and sees that she has a Proof Request from Acme for the "Name" attribute. 
 
   |![NamePR](images/NamePR.png "Accept Name Proof Request Popup")|
   |:--:|
@@ -275,7 +275,7 @@ Alice has gotten her transcript from Faber. Now all she has to do is land the jo
 
 Acme does the same - checks messages, sees the Proof Request and clicks Accept.  Relationship established!
 
-Acme then sends a Proof Request to get Alice's transcript. Here we have to use a bit of a hack for this demo to get the scenario to work.  This is NOT how this is going to work in a real app, but this is enough to get the idea across.
+Acme then sends a Proof Request to get Aby's transcript. Here we have to use a bit of a hack for this demo to get the scenario to work.  This is NOT how this is going to work in a real app, but this is enough to get the idea across.
 
 So far in this demo, the Proof Requests have "just happened."  That is, when a connection is made, both parties send a Proof Request to each other. In this case, we're going to walk through the steps of Acme requesting the proof.  What's the problem with the demo?  Unfortunately, in this demo, Acme doesn't know the information to construct the Proof Request for the transcripts, so they have to get that information from Faber. Worse, we're going to use copy and paste to get that information.  That's ugly! Rest assured, there are other ways for this to work in a real app, but for now, we'll just use this approach.
 
@@ -291,20 +291,20 @@ From the Acme browser tab:
   |:--:|
   |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-2.  Select the **Relationship**, in this case, **Alice**.
+2.  Select the **Relationship**, in this case, **Aby**.
 1.  Select the **Proof Request**, Other (Paste Proof Here).
 1.  Paste the text copied from the Faber tab into the box to the right.  Wow...that's a hack!!
 1.  Click **Submit**.
 
-Jump back to the Alice browser tab and click **Messages**. Alice receives and gives consent to provide the transcript attributes ("claims") for  the Proof.
+Jump back to the Aby browser tab and click **Messages**. Aby receives and gives consent to provide the transcript attributes ("claims") for  the Proof.
 
 |![CredPR](images/AcceptPR.png "Accept Credentials Proof Request Popup")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
-Once Alice accepts the Proof Request for her transcript, then Acme, under Relationships can click on the Alice connection, and see the new proof for Transcript-Data.
+Once Aby accepts the Proof Request for her transcript, then Acme, under Relationships can click on the Aby connection, and see the new proof for Transcript-Data.
 
- |![TranscriptProof](images/TranscriptProof.png "Alice Relationship Details with Transcript Proof")|
+ |![TranscriptProof](images/TranscriptProof.png "Aby Relationship Details with Transcript Proof")|
 |:--:|
 |*Licensed under [CC By 4.0](https://creativecommons.org/licenses/by/4.0/)*|
 
@@ -313,10 +313,10 @@ Acme validates the Proof of Transcript-Data to show:
 
 
 *   The claims came from Faber College
-*   The claims were provided by Alice
+*   The claims were provided by Aby
 *   The claims were not tampered with
 
-Acme knows now that Alice graduated with a Bachelor's Degree in 2015 and she gets the job!
+Acme knows now that Aby graduated with a Bachelor's Degree in 2015 and she gets the job!
 
 
 <!-- GD2md-html version 1.0β11 -->

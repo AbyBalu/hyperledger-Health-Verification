@@ -113,20 +113,20 @@ services:
   #
   # Agents
   #
-  alice:
+  aby:
     image: indy-agentjs
     build:
       context: .
       dockerfile: agent.dockerfile
     command: "bash -c 'sleep 10; npm start'"
     environment:
-      - ICON_SRC=https://maxcdn.icons8.com/Share/icon/Users/person_female1600.png
-      - THEME=DarkGray
+      - ICON_SRC=https://img.icons8.com/officel/100/000000/athlete.png
+      - THEME=Green
       - PORT=3000
-      - NAME=Alice
-      - EMAIL=alice@faber.edu
+      - NAME=Aby
+      - EMAIL=aby@gmail.edu
       - PASSWORD=123
-      - USERNAME=alice
+      - USERNAME=aby
       - PUBLIC_DID_ENDPOINT=173.17.0.150:3000
       - RUST_LOG=${RUST_LOG}
       - TEST_POOL_IP=${TEST_POOL_IP}
@@ -145,17 +145,17 @@ services:
 
   #
   #
-  bob:
+  gaius:
     image: indy-agentjs
     command: "bash -c 'sleep 10; npm start'"
     environment:
       - ICON_SRC=http://www.clker.com/cliparts/g/l/R/7/h/u/teamstijl-person-icon-blue-hi.png
-      - THEME=BurlyWood
+      - THEME=Blue
       - PORT=3001
-      - NAME=Bob
-      - EMAIL=bob@byu.edu
+      - NAME=Gaius
+      - EMAIL=gaius@byu.edu
       - PASSWORD=123
-      - USERNAME=bob
+      - USERNAME=gaius
       - PUBLIC_DID_ENDPOINT=173.17.0.160:3001
       - RUST_LOG=${RUST_LOG}
       - TEST_POOL_IP=${TEST_POOL_IP}
@@ -166,7 +166,7 @@ services:
       - node2
       - node3
       - node4
-      - alice
+      - aby
     networks:
       services:
         ipv4_address: 173.17.0.160
@@ -194,7 +194,7 @@ services:
       - node2
       - node3
       - node4
-      - alice
+      - aby
     networks:
       services:
         ipv4_address: 173.17.0.170
@@ -222,7 +222,7 @@ services:
       - node2
       - node3
       - node4
-      - alice
+      - aby
     networks:
       services:
         ipv4_address: 173.17.0.180
@@ -250,7 +250,7 @@ services:
       - node2
       - node3
       - node4
-      - alice
+      - aby
     networks:
       services:
         ipv4_address: 173.17.0.190
