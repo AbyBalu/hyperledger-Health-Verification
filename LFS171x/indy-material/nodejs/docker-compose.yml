@@ -147,6 +147,9 @@ services:
   #
   gaius:
     image: indy-agentjs
+    build:
+      context: .
+      dockerfile: agent.dockerfile
     command: "bash -c 'sleep 10; npm start'"
     environment:
       - ICON_SRC=http://www.clker.com/cliparts/g/l/R/7/h/u/teamstijl-person-icon-blue-hi.png
@@ -166,10 +169,41 @@ services:
       - node2
       - node3
       - node4
-      - aby
     networks:
       services:
         ipv4_address: 173.17.0.160
+    volumes:
+      - node1-data:/home/indy/ledger
+  
+  #
+  #
+  bibin:
+    image: indy-agentjs
+    build:
+      context: .
+      dockerfile: agent.dockerfile
+    command: "bash -c 'sleep 10; npm start'"
+    environment:
+      - ICON_SRC=http://www.clker.com/cliparts/g/l/R/7/h/u/teamstijl-person-icon-blue-hi.png
+      - THEME=Black
+      - PORT=3005
+      - NAME=Bibin
+      - EMAIL=bibin@byu.edu
+      - PASSWORD=123
+      - USERNAME=bibin
+      - PUBLIC_DID_ENDPOINT=173.17.0.200:3005
+      - RUST_LOG=${RUST_LOG}
+      - TEST_POOL_IP=${TEST_POOL_IP}
+    ports:
+      - 3005:3005
+    depends_on:
+      - node1
+      - node2
+      - node3
+      - node4
+    networks:
+      services:
+        ipv4_address: 173.17.0.200
     volumes:
       - node1-data:/home/indy/ledger
 
@@ -180,8 +214,8 @@ services:
       - ICON_SRC=https://cdn2.iconfinder.com/data/icons/bubble-education-icons-1/360/School-512.png
       - THEME=OliveDrab
       - PORT=3002
-      - NAME=Faber College
-      - EMAIL=admin@faber.edu
+      - NAME=Faber Health
+      - EMAIL=admin@faber.in
       - PASSWORD=123
       - USERNAME=faber
       - PUBLIC_DID_ENDPOINT=173.17.0.170:3002
@@ -195,6 +229,8 @@ services:
       - node3
       - node4
       - aby
+      - gaius
+      - bibin
     networks:
       services:
         ipv4_address: 173.17.0.170
@@ -223,6 +259,8 @@ services:
       - node3
       - node4
       - aby
+      - gaius
+      - bibin
     networks:
       services:
         ipv4_address: 173.17.0.180
@@ -251,6 +289,8 @@ services:
       - node3
       - node4
       - aby
+      - gaius
+      - bibin
     networks:
       services:
         ipv4_address: 173.17.0.190
